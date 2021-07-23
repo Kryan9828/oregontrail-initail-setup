@@ -9,13 +9,11 @@ function Traveler(name){
     this.name = name,
     this.food = 1,
     this.isHealthy = true
-    console.log(this)
 }
 
 function Wagon(number){
     this.capacity = number
     this.passengers = []
-    console.log(this)
 }
 
 Traveler.prototype.hunt = function(){
@@ -55,12 +53,13 @@ console.assert(pineBox.getAvailableSeatCount() === 3,{
 
 // Prototype.join(traveler)
 Wagon.prototype.join = function(traveler){
-    if(this.passengers < this.capacity){
-        this.passengers.push(traveler)
+    if(this.capacity <= this.passengers.length){
+        console.log(`Wagon is full. ${traveler.name} is unable to join.`)
+        return
     } else {
-        return console.log(`Wagon is full. ${traveler.name} is unable to join.`)
+        this.passengers.push(traveler)
+        return
     }
-    console.log(this.passengers)
 }
 pineBox.join(george)
 console.assert(pineBox.passengers.length === 1,{
@@ -73,14 +72,19 @@ console.assert(pineBox.passengers.length === 1,{
 Wagon.prototype.shouldQuarantine = function(){
     for(let i = 0; i < this.passengers.length;i++){
         const passenger = this.passengers[i]
-        if(passenger.isHealthy === false){
-            const warning = console.log(`${passenger} is sick. They need to Quarantine.`)
-            return warning
-        } else {
-            return console.log(`Everyone is healthy.`)
+        if(passenger.isHealthy === false) {
+            console.log(`${passenger.name} is sick. They need to Quarantine.`)
+            return true
+        } else if (
+            passenger.isHealthy === true){
+            console.log(`${passenger.name} is healthy.`)
         }
     }
 }
+
+george.eat()
+george.eat()
+
 console.assert(pineBox.shouldQuarantine() === true,{
     test:"Returns that one traveler is unhealthy",
     expected: true,
@@ -88,6 +92,18 @@ console.assert(pineBox.shouldQuarantine() === true,{
 })
 
 // Prototype.totalFood()
+
+Wagon.prototype.totalFood = function(){
+    let foodSum = 0
+    for (let i = 0; i < this.passengers.length;i++){
+        passenger = this.passengers[i]
+        if (passenger.food >= 0){
+            foodSum += passenger.food
+        } 
+    }
+    console.log(`The wagon has this much ${foodSum} food total.`)
+    return foodSum
+}
 
 console.assert(pineBox.totalFood()=== 0,{
     test:"Total All food in the wagon",
