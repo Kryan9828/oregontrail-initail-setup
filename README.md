@@ -1,5 +1,5 @@
-# Kenzie Academy JavaScript Assignment
+Oregontrail Intial Setup
 
-Complete your work inside of `code.js`
+Javascript prototypes to create people and a wagon
 
-Follow the instructions provided on my.kenzie.academy for this assignment.
+Prototypes are then tested and shown in the console if incorrect.

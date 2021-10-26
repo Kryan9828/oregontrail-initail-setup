@@ -1,10 +1,3 @@
-/**
- * Oregon Trail-----------------------------------------------------------
- * Test Code is in tests.js
- */
-
-// Create your Objects here.
-
 function Traveler(name){
     this.name = name,
     this.food = 1,
@@ -39,7 +32,7 @@ console.assert(george.food === 2,{
     expected: 2,
     result: george.food
 })
-// Prototype.getAvailableSeatCount()
+
 const pineBox = new Wagon(3)
 Wagon.prototype.getAvailableSeatCount = function(){
    let seatCount =  this.capacity - this.passengers.length
@@ -51,7 +44,6 @@ console.assert(pineBox.getAvailableSeatCount() === 3,{
     result:pineBox.getAvailableSeatCount()
 })
 
-// Prototype.join(traveler)
 Wagon.prototype.join = function(traveler){
     if(this.capacity <= this.passengers.length){
         console.log(`Wagon is full. ${traveler.name} is unable to join.`)
@@ -68,7 +60,6 @@ console.assert(pineBox.passengers.length === 1,{
     result:pineBox.passengers.length
 })
 
-// Prototype.shouldQuarantine
 Wagon.prototype.shouldQuarantine = function(){
     for(let i = 0; i < this.passengers.length;i++){
         const passenger = this.passengers[i]
@@ -90,8 +81,6 @@ console.assert(pineBox.shouldQuarantine() === true,{
     expected: true,
     result:pineBox.shouldQuarantine()
 })
-
-// Prototype.totalFood()
 
 Wagon.prototype.totalFood = function(){
     let foodSum = 0
